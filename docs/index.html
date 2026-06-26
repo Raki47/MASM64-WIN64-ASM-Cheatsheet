@@ -22,11 +22,13 @@
   <p>  </p>
   <p> RSP | (Stack Pointer): Points to the top of the stack. </p>
   <p>  </p>
-  <p> RIP | (Instruction pointer): Points to the next Instruction to be executed. </p>
+  <p> RBP | (Base pointer): Often ommited by modern compilers, freeing It to be used as a general purpose register </p>
+  <p>  </p>
+  <p> RIP | (Instruction pointer): Points to the next Instruction to be executed. *64-bit exclusive register* </p>
   <p>  </p>
   <p> R8-R15 | Additional general purpose registers for extended operations and functional arguments. </p>
   <p>  </p>
-  <p> WIN32: </p>
+  <p> 32 Bit registers: </p>
   <p> These Instructions can be translated for 32 bit ASM or using 32 bit functions/code In MASM64 by replacing the "R" with an "E", for example;  </p>
   <p> RAX = EAX, RBX = EBX, ect. </p>
   <p>  </p>
@@ -34,10 +36,26 @@
   <p> R8 = R8D, R9 = R9D, R10 = R10D, ect. </p>
   <p>  </p>
   <p> 16 Bit registers: </p>
-  <p> (To be added at a later date) </p>
+  <p> This follows a similar rule to translating 64 bit to 32 bit, except instead of swapping the "R" you remove the first letter completely, for example; </p>
+  <p> RAX = AX, RBX = EX, ect. </p>
+  <p> With 16 bit, R8-R15 now become R8W-R15W </p>
   <p>  </p>
   <p> 8 Bit registers: </p>
-  <p> (To be added at a later date) </p>
+  <p> 8 Bit registers don't translate as fluently, below listed are 64 bit registers and the 8 bit equivalent; </p>
+  <p> 64-bit | 8-bit </p>
+  <p> -------------- </p>
+  <p>  RAX   |  AL </p>
+  <p>  RBX   |  BL </p>
+  <p>  RCX   |  CL </p>
+  <p>  RDX   |  DL </p>
+  <p>  RSI   |  SIL </p>
+  <p>  RDI   |  DIL </p>
+  <p>  RBP   |  BPL </p>
+  <p>  RSP   |  SPL </p>
+  <p> -------------- </p>
+  <p> R8-R15 also becomes R8B-R15B </p>
   <p>  </p>
+  </h1> MASM Keywords: </h1>
+  <p> (To be continued at a later date) </p>
 </body>
 </html>
