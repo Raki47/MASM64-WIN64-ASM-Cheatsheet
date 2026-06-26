@@ -21,3 +21,6 @@ as I continue learning.
 Begun planning on creating a program using MASM to display a cheatsheet for general purpose registers as both an
 alternative to the webpage version and as a showcase of skills to give me practice. Documentation will not be
 as in depth as the webpage, will only feature general purpose registers.
+
+To end of the day, I've created a protype of a possible new company logo and watermarked the webpage with it.
+I have also fixed the spacing to stop all the text from hugging the left corner of the screen.
