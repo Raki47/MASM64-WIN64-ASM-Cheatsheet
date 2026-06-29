@@ -1,32 +1,263 @@
-t
-{
- color: #FAF9F6;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-h1
-{
- padding: 0 20px;
- color: #FAF9F6;
+body {
+  background: #0B1120;
+  color: #D1D5DB;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
 }
 
-p
-{
- padding: 0 20px;
- color: #FAF9F6;
+.container {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 52px 28px 100px;
 }
 
-body
-{
- margin: 0;
- padding: 0 20px;
- background: #474747;
+/* Logo */
+.top-right-logo {
+  position: fixed;
+  top: 18px;
+  right: 18px;
+  height: 68px;
+  width: auto;
+  opacity: 0.8;
+  z-index: 10;
 }
 
-.top-right-logo
-{
- position: absolute;
- top: 10px;
- right: 10px;
- height: 100px;
- width: auto;
+/* Header */
+.page-header {
+  margin-bottom: 36px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #1E293B;
+}
+
+.page-header h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #F1F5F9;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #4B5563;
+  letter-spacing: 0.04em;
+}
+
+/* Section Cards — sharp corners, no radius */
+.section-card {
+  background: #111827;
+  border: 1px solid #1F2D40;
+  padding: 28px 30px;
+  margin-bottom: 20px;
+}
+
+.section-card h2 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #22C55E;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #1F2D40;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.section-card h3 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: #4B5563;
+  margin: 28px 0 10px;
+}
+
+.section-card h3:first-of-type {
+  margin-top: 0;
+}
+
+/* What is this explainer */
+.explainer {
+  font-size: 0.95rem;
+  color: #9CA3AF;
+  line-height: 1.75;
+  margin-bottom: 14px;
+}
+
+.explainer:last-child {
+  margin-bottom: 0;
+}
+
+/* Register list */
+.register-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.register-entry {
+  display: grid;
+  grid-template-columns: 76px 170px 1fr;
+  gap: 14px;
+  align-items: baseline;
+  padding: 7px 10px;
+  border-bottom: 1px solid #1A2332;
+  transition: background 150ms;
+}
+
+.register-entry:first-child {
+  border-top: 1px solid #1A2332;
+}
+
+.register-entry:hover {
+  background: #0B1120;
+}
+
+.reg-name {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #22C55E;
+  white-space: nowrap;
+}
+
+.reg-role {
+  font-size: 0.82rem;
+  color: #4B5563;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.reg-desc {
+  font-size: 0.875rem;
+  color: #9CA3AF;
+  line-height: 1.55;
+}
+
+/* Note blocks — sharp, left border only */
+.note-block {
+  background: #0B1120;
+  border: 1px solid #1E2D3D;
+  padding: 14px 16px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.note-block p {
+  font-size: 0.875rem;
+  color: #9CA3AF;
+}
+
+.example-line {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.82rem;
+  color: #6B7280;
+}
+
+/* Register table */
+.reg-table {
+  width: 100%;
+  max-width: 320px;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+}
+
+.reg-table th {
+  text-align: left;
+  padding: 7px 14px;
+  background: #0B1120;
+  color: #4B5563;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  border-bottom: 1px solid #1F2D40;
+}
+
+.reg-table td {
+  padding: 7px 14px;
+  border-bottom: 1px solid #141E2B;
+  color: #9CA3AF;
+}
+
+.reg-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.reg-table tbody tr:hover td {
+  background: #0B1120;
+  color: #22C55E;
+}
+
+/* WIP */
+.wip-note {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: #374151;
+  font-style: italic;
+}
+
+/* Coming Soon */
+.coming-soon-list {
+  margin-top: 14px;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.coming-soon-list li {
+  font-size: 0.9rem;
+  color: #4B5563;
+  line-height: 1.55;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container {
+    padding: 32px 16px 60px;
+  }
+
+  .section-card {
+    padding: 20px 16px;
+  }
+
+  .register-entry {
+    grid-template-columns: 70px 1fr;
+  }
+
+  .reg-role {
+    display: none;
+  }
+
+  .reg-desc {
+    grid-column: 1 / -1;
+  }
+
+  .top-right-logo {
+    height: 48px;
+  }
+
+  .page-header h1 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .register-entry {
+    transition: none;
+  }
 }

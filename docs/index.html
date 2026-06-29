@@ -1,62 +1,366 @@
 <html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css"
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>WIN64 Assembly Cheatsheet (MASM64)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <img src="images/Raki47_logo_new_proto.png" alt="Company Logo" class="top-right-logo">
-  <h1> General Purpose Registers: </h1>
-  <p> 64 bit registers: </p>
-  <p> RAX | (Accumalator register): Used for arrithmatic operations and as a return register. </p>
-  <p> </p>
-  <p> RBX | (Base register): Used for base addressing. </p>
-  <p> </p>
-  <p> RCX | (Counter register): Used for loop counters and as the first argument In function calls. </p>
-  <p>  </p>
-  <p> RDX | (Data register): Used for I/O operations and as the second argument In function calls. </p>
-  <p>  </p>
-  <p> RSI | (Source Index): Typically used for string and array memory operations. </p>
-  <p>  </p>
-  <p> RDI | (Destination Index): Also used for string and array operations, RSI and RDI also often used as source and destination pointers.  </p>
-  <p>  </p>
-  <p> RSP | (Stack Pointer): Points to the top of the stack. </p>
-  <p>  </p>
-  <p> RBP | (Base pointer): Often ommited by modern compilers, freeing It to be used as a general purpose register </p>
-  <p>  </p>
-  <p> RIP | (Instruction pointer): Points to the next Instruction to be executed. *64-bit exclusive register* </p>
-  <p>  </p>
-  <p> R8-R15 | Additional general purpose registers for extended operations and functional arguments. </p>
-  <p>  </p>
-  <p> 32 Bit registers: </p>
-  <p> These Instructions can be translated for 32 bit ASM or using 32 bit functions/code In MASM64 by replacing the "R" with an "E", for example;  </p>
-  <p> RAX = EAX, RBX = EBX, ect. </p>
-  <p>  </p>
-  <p> The exception to this is the R8-R15 registers, with these instead of replacing the "R" you add a "D" at the end, for example; </p>
-  <p> R8 = R8D, R9 = R9D, R10 = R10D, ect. </p>
-  <p>  </p>
-  <p> 16 Bit registers: </p>
-  <p> This follows a similar rule to translating 64 bit to 32 bit, except instead of swapping the "R" you remove the first letter completely, for example; </p>
-  <p> RAX = AX, RBX = EX, ect. </p>
-  <p> With 16 bit, R8-R15 now become R8W-R15W </p>
-  <p>  </p>
-  <p> 8 Bit registers: </p>
-  <p> 8 Bit registers don't translate as fluently, below listed are 64 bit registers and the 8 bit equivalent; </p>
-  <p> 64-bit | 8-bit </p>
-  <p> -------------- </p>
-  <p>  RAX   |  AL </p>
-  <p>  RBX   |  BL </p>
-  <p>  RCX   |  CL </p>
-  <p>  RDX   |  DL </p>
-  <p>  RSI   |  SIL </p>
-  <p>  RDI   |  DIL </p>
-  <p>  RBP   |  BPL </p>
-  <p>  RSP   |  SPL </p>
-  <p> -------------- </p>
-  <p> R8-R15 also becomes R8B-R15B </p>
-  <p>  </p>
-  <h1> MASM Keywords: </h1>
-  <p> (To be continued at a later date) </p>
+  <img src="images/Raki47_logo_new_proto.png" alt="Raki47 Logo" class="top-right-logo">
+
+  <div class="container">
+
+    <header class="page-header">
+      <h1>WIN64 Assembly Cheatsheet</h1>
+      <p class="subtitle">MASM64 — work in progress</p>
+    </header>
+
+    <!-- What is this -->
+    <section class="section-card">
+      <h2>What is this?</h2>
+      <p class="explainer">
+        Every program on your computer — Chrome, Photoshop, your games — eventually becomes raw instructions sent directly to the CPU. Most programming languages hide this from you behind layers of translation. Assembly is what's at the bottom. You're writing the actual instructions the chip executes, one step at a time, with nothing in between.
+      </p>
+      <p class="explainer">
+        MASM64 is the tool for writing that kind of code on 64-bit Windows. This page is working notes for someone learning how to talk to the processor directly.
+      </p>
+      <p class="explainer">
+        The registers listed here are the CPU's scratchpad — a handful of ultra-fast slots built into the chip itself. Every calculation, memory read, and function call runs through them. There are only about 16, and each one has a job.
+      </p>
+    </section>
+
+    <!-- General Purpose Registers -->
+    <section class="section-card">
+      <h2>General Purpose Registers</h2>
+
+      <h3>64-bit Registers</h3>
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">RAX</span>
+          <span class="reg-role">Accumulator register</span>
+          <span class="reg-desc">Used for arrithmatic operations and as a return register.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RBX</span>
+          <span class="reg-role">Base register</span>
+          <span class="reg-desc">Used for base addressing.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RCX</span>
+          <span class="reg-role">Counter register</span>
+          <span class="reg-desc">Used for loop counters and as the first argument In function calls.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RDX</span>
+          <span class="reg-role">Data register</span>
+          <span class="reg-desc">Used for I/O operations and as the second argument In function calls.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RSI</span>
+          <span class="reg-role">Source Index</span>
+          <span class="reg-desc">Typically used for string and array memory operations.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RDI</span>
+          <span class="reg-role">Destination Index</span>
+          <span class="reg-desc">Also used for string and array operations, RSI and RDI also often used as source and destination pointers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RSP</span>
+          <span class="reg-role">Stack Pointer</span>
+          <span class="reg-desc">Points to the top of the stack.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RBP</span>
+          <span class="reg-role">Base Pointer</span>
+          <span class="reg-desc">Often ommited by modern compilers, freeing It to be used as a general purpose register.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RIP</span>
+          <span class="reg-role">Instruction Pointer</span>
+          <span class="reg-desc">Points to the next Instruction to be executed. (64-bit exclusive register)</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">R8–R15</span>
+          <span class="reg-role">Extended Registers</span>
+          <span class="reg-desc">Additional general purpose registers for extended operations and functional arguments.</span>
+        </div>
+      </div>
+
+      <h3>32-bit Registers</h3>
+      <div class="note-block">
+        <p>These Instructions can be translated for 32 bit ASM or using 32 bit functions/code In MASM64 by replacing the "R" with an "E", for example:</p>
+        <p class="example-line">RAX = EAX, RBX = EBX, ect.</p>
+        <p>The exception to this is the R8-R15 registers, with these instead of replacing the "R" you add a "D" at the end, for example:</p>
+        <p class="example-line">R8 = R8D, R9 = R9D, R10 = R10D, ect.</p>
+      </div>
+
+      <h3>16-bit Registers</h3>
+      <div class="note-block">
+        <p>This follows a similar rule to translating 64 bit to 32 bit, except instead of swapping the "R" you remove the first letter completely, for example:</p>
+        <p class="example-line">RAX = AX, RBX = BX, ect.</p>
+        <p>With 16 bit, R8-R15 now become R8W-R15W.</p>
+      </div>
+
+      <h3>8-bit Registers</h3>
+      <div class="note-block">
+        <p>8 Bit registers don't translate as fluently, below listed are 64 bit registers and the 8 bit equivalent:</p>
+      </div>
+      <table class="reg-table">
+        <thead>
+          <tr>
+            <th>64-bit</th>
+            <th>8-bit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>RAX</td><td>AL</td></tr>
+          <tr><td>RBX</td><td>BL</td></tr>
+          <tr><td>RCX</td><td>CL</td></tr>
+          <tr><td>RDX</td><td>DL</td></tr>
+          <tr><td>RSI</td><td>SIL</td></tr>
+          <tr><td>RDI</td><td>DIL</td></tr>
+          <tr><td>RBP</td><td>BPL</td></tr>
+          <tr><td>RSP</td><td>SPL</td></tr>
+          <tr><td>R8–R15</td><td>R8B–R15B</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Windows x64 Calling Convention -->
+    <section class="section-card">
+      <h2>Windows x64 Calling Convention</h2>
+      <p class="explainer">
+        When your code calls a function — whether it's one you wrote or a Windows API function — both sides need to agree on how to hand data back and forth. That agreement is called the calling convention. On Windows x64 there is only one, and it's strict.
+      </p>
+      <p class="explainer">
+        Arguments are loaded into specific registers before the call, in order. If you're calling a function that takes three inputs, the first goes in RCX, the second in RDX, the third in R8. The function knows exactly where to look.
+      </p>
+
+      <h3>Argument Registers (in order)</h3>
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">RCX</span>
+          <span class="reg-role">1st argument</span>
+          <span class="reg-desc">The first value passed into a function call.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RDX</span>
+          <span class="reg-role">2nd argument</span>
+          <span class="reg-desc">The second value passed into a function call.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">R8</span>
+          <span class="reg-role">3rd argument</span>
+          <span class="reg-desc">The third value passed into a function call.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">R9</span>
+          <span class="reg-role">4th argument</span>
+          <span class="reg-desc">The fourth value passed into a function call.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">Stack</span>
+          <span class="reg-role">5th argument onwards</span>
+          <span class="reg-desc">Any arguments beyond the fourth are pushed onto the stack instead.</span>
+        </div>
+      </div>
+
+      <h3>Return Value</h3>
+      <div class="note-block">
+        <p>When a function finishes and hands a value back to the caller, that value is placed in RAX. If you call a function and want to use the result, RAX is where you look after the call returns.</p>
+      </div>
+
+      <h3>Volatile vs Non-Volatile Registers</h3>
+      <div class="note-block">
+        <p>Some registers are considered "volatile" — the function you call is allowed to overwrite them without restoring them. If you need a value to survive a function call, don't leave it in a volatile register.</p>
+        <p class="example-line">Volatile (may be changed by a call): RAX, RCX, RDX, R8, R9, R10, R11</p>
+        <p>Non-volatile registers must be saved and restored by any function that uses them, so their values are safe across calls.</p>
+        <p class="example-line">Non-volatile (safe across calls): RBX, RBP, RDI, RSI, RSP, R12–R15</p>
+      </div>
+    </section>
+
+    <!-- Common Instructions -->
+    <section class="section-card">
+      <h2>Common Instructions</h2>
+      <p class="explainer">
+        Instructions are the actual commands you give the CPU. Each one does a single, specific thing. Below are the ones you'll use constantly when starting out.
+      </p>
+
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">MOV</span>
+          <span class="reg-role">Move / Copy</span>
+          <span class="reg-desc">Copies a value from one place to another. The source is unchanged. This is the most used instruction in assembly.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">ADD</span>
+          <span class="reg-role">Add</span>
+          <span class="reg-desc">Adds two values together and stores the result in the destination register.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">SUB</span>
+          <span class="reg-role">Subtract</span>
+          <span class="reg-desc">Subtracts the second value from the first and stores the result in the destination register.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">INC</span>
+          <span class="reg-role">Increment</span>
+          <span class="reg-desc">Adds 1 to a register. Shorter than writing ADD RAX, 1.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">DEC</span>
+          <span class="reg-role">Decrement</span>
+          <span class="reg-desc">Subtracts 1 from a register.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">PUSH</span>
+          <span class="reg-role">Push to stack</span>
+          <span class="reg-desc">Places a value on top of the stack and moves RSP down to account for it.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">POP</span>
+          <span class="reg-role">Pop from stack</span>
+          <span class="reg-desc">Takes the top value off the stack, puts it in the specified register, and moves RSP back up.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">CMP</span>
+          <span class="reg-role">Compare</span>
+          <span class="reg-desc">Compares two values by subtracting them, but throws the result away. It only sets the status flags, which conditional jumps then read.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JMP</span>
+          <span class="reg-role">Jump</span>
+          <span class="reg-desc">Unconditionally jumps to a label in your code. Execution continues from there.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">CALL</span>
+          <span class="reg-role">Call a procedure</span>
+          <span class="reg-desc">Jumps to a function or procedure. Before jumping, it saves the return address on the stack so RET knows where to come back to.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">RET</span>
+          <span class="reg-role">Return</span>
+          <span class="reg-desc">Ends the current procedure and jumps back to wherever CALL was made from.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">XOR</span>
+          <span class="reg-role">Exclusive OR</span>
+          <span class="reg-desc">Performs a bitwise XOR. Commonly used to zero out a register — XOR RAX, RAX sets RAX to 0 faster than MOV RAX, 0.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Conditional Jumps -->
+    <section class="section-card">
+      <h2>Conditional Jumps</h2>
+      <p class="explainer">
+        A conditional jump only jumps if a certain condition is true. They're almost always used right after a CMP instruction. CMP sets flags behind the scenes, and then the jump reads those flags to decide whether to go or not.
+      </p>
+      <p class="explainer">
+        Think of it like an if statement: CMP is the condition check, the jump is the branch.
+      </p>
+
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">JE</span>
+          <span class="reg-role">Jump if Equal</span>
+          <span class="reg-desc">Jumps if the two compared values were equal. Also written JZ (jump if zero).</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JNE</span>
+          <span class="reg-role">Jump if Not Equal</span>
+          <span class="reg-desc">Jumps if the two values were not equal. Also written JNZ (jump if not zero).</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JL</span>
+          <span class="reg-role">Jump if Less Than</span>
+          <span class="reg-desc">Jumps if the first value was less than the second. For signed numbers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JG</span>
+          <span class="reg-role">Jump if Greater Than</span>
+          <span class="reg-desc">Jumps if the first value was greater than the second. For signed numbers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JLE</span>
+          <span class="reg-role">Jump if Less or Equal</span>
+          <span class="reg-desc">Jumps if the first value was less than or equal to the second. For signed numbers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JGE</span>
+          <span class="reg-role">Jump if Greater or Equal</span>
+          <span class="reg-desc">Jumps if the first value was greater than or equal to the second. For signed numbers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JA</span>
+          <span class="reg-role">Jump if Above</span>
+          <span class="reg-desc">Like JG but for unsigned numbers.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">JB</span>
+          <span class="reg-role">Jump if Below</span>
+          <span class="reg-desc">Like JL but for unsigned numbers.</span>
+        </div>
+      </div>
+
+      <h3>Signed vs Unsigned</h3>
+      <div class="note-block">
+        <p>Signed numbers can be negative (they use one bit to track the sign). Unsigned numbers are always positive and use all bits for the value. Use JL/JG for signed comparisons, JA/JB for unsigned. Getting this wrong is a common source of bugs.</p>
+      </div>
+    </section>
+
+    <!-- Status Flags -->
+    <section class="section-card">
+      <h2>Status Flags (RFLAGS)</h2>
+      <p class="explainer">
+        The CPU keeps a special register called RFLAGS that tracks the outcome of operations. You don't usually set these manually — instructions like CMP, ADD, and SUB set them automatically as a side effect. Conditional jumps then read them to decide what to do.
+      </p>
+
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">ZF</span>
+          <span class="reg-role">Zero Flag</span>
+          <span class="reg-desc">Set to 1 when the result of an operation is zero. CMP sets this when two values are equal.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">CF</span>
+          <span class="reg-role">Carry Flag</span>
+          <span class="reg-desc">Set when an unsigned operation overflows or borrows past its bit limit. Used by JA and JB.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">SF</span>
+          <span class="reg-role">Sign Flag</span>
+          <span class="reg-desc">Set to 1 when the result is negative (the top bit is 1). Mirrors the sign bit of the result.</span>
+        </div>
+        <div class="register-entry">
+          <span class="reg-name">OF</span>
+          <span class="reg-role">Overflow Flag</span>
+          <span class="reg-desc">Set when a signed operation produces a result too large or too small to fit. Used by JL and JG.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- MASM Keywords -->
+    <section class="section-card">
+      <h2>MASM Keywords</h2>
+      <p class="wip-note">To be continued at a later date.</p>
+    </section>
+
+    <!-- Coming Soon -->
+    <section class="section-card">
+      <h2>Coming Soon</h2>
+      <p class="explainer">Topics planned for future updates:</p>
+      <ul class="coming-soon-list">
+        <li>Data types — BYTE, WORD, DWORD, QWORD and when to use each</li>
+        <li>Basic program skeleton — the .data and .code structure so you have a working starting point to copy from</li>
+        <li>Stack alignment — Windows x64 requires the stack to be 16-byte aligned before any CALL, which trips up almost everyone at first</li>
+      </ul>
+    </section>
+
+  </div>
 </body>
 </html>
