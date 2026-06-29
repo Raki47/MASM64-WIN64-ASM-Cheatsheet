@@ -1,10 +1,20 @@
 # MASM64-WIN64-ASM-Cheatsheet
-Writing up a cheatsheet/documentation for Windows x64 Assembly (MASM64).
+Writing up a cheatsheet/documentation for Windows x64 Assembly (MASM64). Documentation for programming with x64 Assembly has
+become scarce as modern advancements In hardware have medium and high level languages the norm. For those such as my self
+passionate about learning low level coding for the challenge, or those who want to Improve their skills with languages
+such as C by understanding what happens at a deeper level, this documentation serves as dictionary to help you learn
+the language conventions of x64 Assembly for Windows. Assembly on Windows Is often called MASM, short for
+*Mirosoft Macro Assembler*, the toolchain used to assemble the code.
 
 Access the web UI version through the full link below:
 
 https://raki47.github.io/MASM64-WIN64-ASM-Cheatsheet/
 
+------------------------------------------------------------------------------------------------------------------------
+## Collaborators and credits
+------------------------------------------------------------------------------------------------------------------------
+Webpage readability and style adjustments all done by MrGutsy138
+https://github.com/MrGutsy138
 
 ------------------------------------------------------------------------------------------------------------------------
 ## Project timeline
