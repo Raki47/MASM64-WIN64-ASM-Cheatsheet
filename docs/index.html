@@ -344,18 +344,118 @@
       </div>
     </section>
 
-    <!-- MASM Keywords -->
+    <!-- MASM64 Data Types -->
     <section class="section-card">
-      <h2>MASM Keywords</h2>
-      <p class="wip-note">To be continued at a later date.</p>
-    </section>
+      <h2>MASM64 Data Types / Sizes</h2>
 
+      <p class="explainer">
+        Unlike higher level languages such as C, MASM64 does not have built-in types like int, float, or string. Instead, assembly works directly with memory sizes. These keywords describe how much space a value occupies and how much data an instruction should operate on.
+      </p>
+
+      <div class="register-list">
+        <div class="register-entry">
+          <span class="reg-name">BYTE</span>
+          <span class="reg-role">8-bit value</span>
+          <span class="reg-desc">Stores 1 byte of data. Commonly used for characters, flags, and very small numbers.</span>
+        </div>
+
+        <div class="register-entry">
+          <span class="reg-name">WORD</span>
+          <span class="reg-role">16-bit value</span>
+          <span class="reg-desc">Stores 2 bytes of data. Used for smaller integer values.</span>
+        </div>
+
+        <div class="register-entry">
+          <span class="reg-name">DWORD</span>
+          <span class="reg-role">32-bit value</span>
+          <span class="reg-desc">Stores 4 bytes of data. Commonly used for integers, Windows API values, and 32-bit operations.</span>
+        </div>
+
+        <div class="register-entry">
+          <span class="reg-name">QWORD</span>
+          <span class="reg-role">64-bit value</span>
+          <span class="reg-desc">Stores 8 bytes of data. Used for 64-bit integers and memory addresses (pointers) in MASM64.</span>
+        </div>
+      </div>
+
+      <h3>Data Definition Directives</h3>
+
+      <p class="explainer">
+        Data types describe the size of data, while data definition directives reserve and optionally initialise memory with that size.
+      </p>
+
+      <table class="reg-table">
+        <thead>
+          <tr>
+            <th>Directive</th>
+            <th>Meaning</th>
+            <th>Size</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>DB</td>
+            <td>Define Byte</td>
+            <td>1 byte</td>
+          </tr>
+          <tr>
+            <td>DW</td>
+            <td>Define Word</td>
+            <td>2 bytes</td>
+          </tr>
+          <tr>
+            <td>DD</td>
+            <td>Define Doubleword</td>
+            <td>4 bytes</td>
+          </tr>
+          <tr>
+            <td>DQ</td>
+            <td>Define Quadword</td>
+            <td>8 bytes</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Example</h3>
+
+      <div class="note-block">
+        <p class="example-line">
+          .data
+        </p>
+        <p class="example-line">
+          myByte&nbsp;&nbsp;&nbsp; BYTE 10<br>
+          myWord&nbsp;&nbsp;&nbsp; WORD 1000<br>
+          myDword DWORD 100000<br>
+          myQword QWORD 100000000
+        </p>
+      </div>
+
+      <h3>Register Size Relationship</h3>
+
+      <div class="note-block">
+        <p>
+          The same sizes apply to CPU registers. A 64-bit register can be accessed as smaller sections:
+        </p>
+
+        <p class="example-line">
+          RAX = QWORD<br>
+          EAX = DWORD<br>
+          AX&nbsp; = WORD<br>
+          AL&nbsp; = BYTE
+        </p>
+
+        <p>
+          In MASM64, memory addresses are 64-bit, meaning pointers are normally stored in QWORD-sized values.
+        </p>
+      </div>
+
+    </section>
     <!-- Coming Soon -->
     <section class="section-card">
       <h2>Coming Soon</h2>
       <p class="explainer">Topics planned for future updates:</p>
       <ul class="coming-soon-list">
-        <li>Data types — BYTE, WORD, DWORD, QWORD and when to use each</li>
+        <li>Structures and custom data layouts — STRUCT, TYPEDEF, and organising complex data</li>
         <li>Basic program skeleton — the .data and .code structure so you have a working starting point to copy from</li>
         <li>Stack alignment — Windows x64 requires the stack to be 16-byte aligned before any CALL, which trips up almost everyone at first</li>
       </ul>
