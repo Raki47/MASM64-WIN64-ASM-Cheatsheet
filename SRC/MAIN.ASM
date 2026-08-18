@@ -1,0 +1,2 @@
+; To be continued at a later date, this will be a simple app that provides a little dictionarry for 64 bit MASM registers.
+; The web page will be fancier and more detailed, this is more of a bonus project to test my skills
