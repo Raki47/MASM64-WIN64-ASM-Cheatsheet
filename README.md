@@ -34,6 +34,8 @@ as in depth as the webpage, will only feature general purpose registers.
 
 To end of the day, I've created a protype of a possible new company logo and watermarked the webpage with it.
 I have also fixed the spacing to stop all the text from hugging the left corner of the screen.
+<img width="512" height="512" alt="Raki47_logo_new_proto" src="https://github.com/user-attachments/assets/bc3f2cd9-046e-4808-9572-9f89883c11ba" />
+
 
 ### 28/08/26
 I have done major work on developing the desktop app version of the cheatsheat, I fixed up my MASM GLAD file
