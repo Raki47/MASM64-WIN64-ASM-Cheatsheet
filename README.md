@@ -34,3 +34,13 @@ as in depth as the webpage, will only feature general purpose registers.
 
 To end of the day, I've created a protype of a possible new company logo and watermarked the webpage with it.
 I have also fixed the spacing to stop all the text from hugging the left corner of the screen.
+
+### 28/08/26
+I have done major work on developing the desktop app version of the cheatsheat, I fixed up my MASM GLAD file
+project I create a couple years ago, completely rewrote my colour library so it works for OpenGL and I begun work
+on my main file, the project succesfully opens up a window now but more work is needed to implement OpenGL into it.
+
+As well as needing to setup the OpenGL context, I will need to actually print the cheatsheet into the window.
+<img width="1847" height="670" alt="image" src="https://github.com/user-attachments/assets/a887820b-0402-4324-a3ac-bda7d59f4b0f" />
+
+
