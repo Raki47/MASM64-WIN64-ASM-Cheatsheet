@@ -34,7 +34,8 @@ as in depth as the webpage, will only feature general purpose registers.
 
 To end of the day, I've created a protype of a possible new company logo and watermarked the webpage with it.
 I have also fixed the spacing to stop all the text from hugging the left corner of the screen.
-<img width="512" height="512" alt="Raki47_logo_new_proto" src="https://github.com/user-attachments/assets/bc3f2cd9-046e-4808-9572-9f89883c11ba" />
+
+<img width="256" height="256" alt="Raki47_logo_new_proto" src="https://github.com/user-attachments/assets/bc3f2cd9-046e-4808-9572-9f89883c11ba" />
 
 
 ### 28/08/26
@@ -43,6 +44,7 @@ project I create a couple years ago, completely rewrote my colour library so it 
 on my main file, the project succesfully opens up a window now but more work is needed to implement OpenGL into it.
 
 As well as needing to setup the OpenGL context, I will need to actually print the cheatsheet into the window.
+
 <img width="1847" height="670" alt="image" src="https://github.com/user-attachments/assets/a887820b-0402-4324-a3ac-bda7d59f4b0f" />
 
 
